@@ -827,3 +827,50 @@ for m in range(len(sleep)):
     se_list.append(float(sleep[m]))
 
 se_list
+
+
+
+# ライブラリのインポート
+import sqlite3
+
+# 居場所の確認
+!pwd
+
+# ファイルを保存するためパスを指定する
+path = '/Users/kaho/Downloads/DS_program/solo/HW_3/DSpro_2_final'
+db_name = 'DSpro_HW3.sqlite'
+# DBに接続し、閉じる
+con = sqlite3.connect(path + db_name)
+con.close()
+
+# DBに接続する
+con = sqlite3.connect('/Users/kaho/Downloads/DS_program/solo/HW_3/DSpro_2_finalDSpro_HW3.sqlite')
+# オブジェクトの現状確認
+print(type(con))
+# SQLを実行するためのオブジェクトを取得
+cur = con.cursor()
+# テーブル作成のSQLを記述
+sql_create_table_gg = 'CREATE TABLE dhse(sleepefficiency float, daylighthours float);'
+#SQLを実行する
+cur.execute(sql_create_table_gg)
+# DBへの接続を閉じる
+con.close()
+
+# DBに接続する
+con = sqlite3.connect('/Users/kaho/Downloads/DS_program/solo/HW_3/DSpro_2_finalDSpro_HW3.sqlite')
+# SQLを実行するためのオブジェクトを取得
+cur = con.cursor()
+with open('/Users/kaho/Downloads/DS_program/solo/HW_3/sleep02.csv', 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    # ヘッダー行がある場合、読み飛ばす
+    next(csv_reader)
+    for row in csv_reader:
+        # VALUESの値をタプルにする（カンマを追加）
+        cur.execute('''
+            INSERT INTO dhse (sleepefficiency, daylighthours)
+            VALUES (?, ?)
+        ''', (row[0], row[1],))
+# 変更を保存
+con.commit()
+# 接続を閉じる
+con.close()
