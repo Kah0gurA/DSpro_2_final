@@ -803,3 +803,16 @@ del wet_td[22]
 # 内容表示
 wet_td
 
+
+
+# モジュールの呼び出し
+import csv
+
+# csvファイルの読み込み
+with open('/Users/kaho/Downloads/DS_program/solo/HW_3/sleep0A.csv', encoding = 'utf8')as f:
+   # csvファイルをリスト化
+   sleep = [l.strip() for l in f.readlines()]
+   print(sleep)
+
+
+sleep
