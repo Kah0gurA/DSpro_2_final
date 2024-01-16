@@ -803,6 +803,12 @@ del wet_td[22]
 # 内容表示
 wet_td
 
+dh_list = []
+for i in range(len(wet_td)):
+    dh_list.append(float(wet_td[i]))
+
+dh_list
+
 
 
 # モジュールの呼び出し
@@ -814,5 +820,10 @@ with open('/Users/kaho/Downloads/DS_program/solo/HW_3/sleep0A.csv', encoding = '
    sleep = [l.strip() for l in f.readlines()]
    print(sleep)
 
-
 sleep
+
+se_list = []
+for m in range(len(sleep)):
+    se_list.append(float(sleep[m]))
+
+se_list
